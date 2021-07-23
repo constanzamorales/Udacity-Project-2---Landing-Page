@@ -19,6 +19,7 @@
 */
 
 
+
 /**
  * End Global Variables
  * Start Helper Functions
@@ -47,11 +48,36 @@
  * Begin Events
  * 
 */
+// Build menu
+// Select all h2 in the html file
+const sections = document.querySelectorAll('h2');
 
-// Build menu 
+// Loop through each h2 and add elements to the nav menu
+for (i = 0; i < sections.length; i++){
+    const navBar = document.querySelector('#navbar__list');
+    const link = document.createElement('a');
+    const item = document.createElement('li');
+    link.setAttribute('href', sections[i].id);
+    link.textContent = sections[i].innerText;
+    item.appendChild(link);
+    navBar.appendChild(item);
+}
 
 // Scroll to section on link click
 
 // Set sections as active
+
+
+const menuItems = document.querySelectorAll('li');
+console.log(menuItems[0]);
+
+for (i = 0; i < menuItems.length; i++){
+    menuItems[i].addEventListener('click', function(event){
+        event.preventDefault();
+        menuItems[i].scrollIntoView({ behavior: "smooth"});
+    })
+}
+
+
 
 
