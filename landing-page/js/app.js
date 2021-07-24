@@ -50,31 +50,37 @@
 */
 // Build menu
 // Select all h2 in the html file
-const sections = document.querySelectorAll('h2');
+const titles = document.querySelectorAll('h2');
 
 // Loop through each h2 and add elements to the nav menu
-for (i = 0; i < sections.length; i++){
+for (i = 0; i < titles.length; i++){
     const navBar = document.querySelector('#navbar__list');
     const link = document.createElement('a');
     const item = document.createElement('li');
-    link.setAttribute('href', sections[i].id);
-    link.textContent = sections[i].innerText;
+    link.setAttribute('href', '');
+    link.textContent = titles[i].innerText;
     item.appendChild(link);
     navBar.appendChild(item);
 }
+
+// Linking menu items with sections
+const sections = document.querySelectorAll('section');
+const listItems = document.querySelectorAll('a');
+
+for (i = 0; i < sections.length; i++){
+    listItems[i].setAttribute('href', `#${sections[i].id}`);
+}
+
 
 // Scroll to section on link click
 
 // Set sections as active
 
 
-const menuItems = document.querySelectorAll('li');
-console.log(menuItems[0]);
-
-for (i = 0; i < menuItems.length; i++){
-    menuItems[i].addEventListener('click', function(event){
-        event.preventDefault();
-        menuItems[i].scrollIntoView({ behavior: "smooth"});
+for (i = 0; i < listItems.length; i++){
+    listItems[i].addEventListener('click', function(){
+        listItems[i].preventDefault();
+        listItems[i].scrollIntoView({behavior: "smooth"});
     })
 }
 
