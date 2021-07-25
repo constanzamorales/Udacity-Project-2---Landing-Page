@@ -57,6 +57,7 @@ for (i = 0; i < titles.length; i++){
     const navBar = document.querySelector('#navbar__list');
     const link = document.createElement('a');
     const item = document.createElement('li');
+    item.setAttribute('id', `item${i}`);
     link.setAttribute('href', '');
     link.textContent = titles[i].innerText;
     item.appendChild(link);
@@ -64,11 +65,14 @@ for (i = 0; i < titles.length; i++){
 }
 
 // Linking menu items with sections
-const sections = document.querySelectorAll('section');
-const listItems = document.querySelectorAll('a');
+const sectionElements = document.querySelectorAll('section');
+const linkElements = document.querySelectorAll('a');
 
-for (i = 0; i < sections.length; i++){
-    listItems[i].setAttribute('href', `#${sections[i].id}`);
+const sectionsArr = Array.from(sectionElements);
+const linksArr = Array.from(linkElements);
+
+for (i = 0; i < sectionsArr.length; i++){
+    linksArr[i].setAttribute('href', `#${sectionsArr[i].id}`);
 }
 
 
@@ -77,12 +81,32 @@ for (i = 0; i < sections.length; i++){
 // Set sections as active
 
 
-for (i = 0; i < listItems.length; i++){
-    listItems[i].addEventListener('click', function(){
-        listItems[i].preventDefault();
-        listItems[i].scrollIntoView({behavior: "smooth"});
-    })
+/*
+function clickLink() {
+    const menuItem = document.querySelector('a');
+    menuItem.addEventListener('click', function(event) {
+        console.log('hello');
+        event.preventDefault();
+        menuItem.scrollIntoView({ behavior: "smooth" });
+    });
 }
+*/
+
+for (i = 0; i < linkElements.length; i++) {
+    const linkId = linkElements[i].getAttribute('href');
+    console.log(linkId);
+    linkElements[i].addEventListener('click', function(event) {
+        const sct = document.querySelector(`${linkId}`);
+        event.preventDefault();
+        sct.scrollIntoView({ behavior: 'smooth' });
+        sct.classList.toggle('your-active-class');
+    });
+}
+
+console.log(linkElements[0]);
+
+
+
 
 
 
