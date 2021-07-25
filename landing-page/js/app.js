@@ -43,67 +43,65 @@
 // Scroll to anchor ID using scrollTO event
 
 
-/**
- * End Main Functions
- * Begin Events
- * 
-*/
-// Build menu
+// Building the menu
 // Select all h2 in the html file
 const titles = document.querySelectorAll('h2');
+const titlesArr = Array.from(titles);
 
 // Loop through each h2 and add elements to the nav menu
-for (i = 0; i < titles.length; i++){
+for (const title of titlesArr) {
     const navBar = document.querySelector('#navbar__list');
     const link = document.createElement('a');
     const item = document.createElement('li');
-    item.setAttribute('id', `item${i}`);
     link.setAttribute('href', '');
-    link.textContent = titles[i].innerText;
+    link.textContent = title.innerText;
     item.appendChild(link);
     navBar.appendChild(item);
 }
 
-// Linking menu items with sections
+// Selecting all sections and all anchors
 const sectionElements = document.querySelectorAll('section');
 const linkElements = document.querySelectorAll('a');
-
+// Converting NodeLists to arrays
 const sectionsArr = Array.from(sectionElements);
 const linksArr = Array.from(linkElements);
 
+// Giving each link its href and class
 for (i = 0; i < sectionsArr.length; i++){
     linksArr[i].setAttribute('href', `#${sectionsArr[i].id}`);
+    linksArr[i].setAttribute('class', `${sectionsArr[i].id}`);
 }
+
 
 
 // Scroll to section on link click
-
-// Set sections as active
-
-
-/*
-function clickLink() {
-    const menuItem = document.querySelector('a');
-    menuItem.addEventListener('click', function(event) {
-        console.log('hello');
-        event.preventDefault();
-        menuItem.scrollIntoView({ behavior: "smooth" });
-    });
-}
-*/
-
-for (i = 0; i < linkElements.length; i++) {
-    const linkId = linkElements[i].getAttribute('href');
-    console.log(linkId);
-    linkElements[i].addEventListener('click', function(event) {
+for (const link of linkElements) {
+    const linkId = link.getAttribute('href');
+    link.addEventListener('click', function (event) {
         const sct = document.querySelector(`${linkId}`);
         event.preventDefault();
         sct.scrollIntoView({ behavior: 'smooth' });
-        sct.classList.toggle('your-active-class');
     });
 }
 
-console.log(linkElements[0]);
+// Add class 'active' to section and link when it is near top of viewport
+function setAsActive() {
+    for (const section of sectionElements) {
+        const box = section.getBoundingClientRect();
+        const link = document.querySelector(`.${section.id}`);
+        if (box.top <= 150 && box.bottom >= 150) {
+            section.classList.toggle('your-active-class');
+            link.classList.toggle('your-active-class');
+        } else {
+            section.classList.remove('your-active-class');
+            link.classList.remove('your-active-class');
+        }
+    }
+}
+
+document.addEventListener("scroll", function () {
+    setAsActive();
+});
 
 
 
