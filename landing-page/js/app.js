@@ -13,28 +13,6 @@
  * 
 */
 
-/**
- * Define Global Variables
- * 
-*/
-
-
-
-/**
- * End Global Variables
- * Start Helper Functions
- * 
-*/
-
-
-
-/**
- * End Helper Functions
- * Begin Main Functions
- * 
-*/
-
-// build the nav
 
 
 // Add class 'active' to section when near top of viewport
@@ -92,16 +70,16 @@ function setAsActive() {
         if (box.top <= 150 && box.bottom >= 150) {
             section.classList.toggle('your-active-class');
             link.classList.toggle('your-active-class');
+            link.style.boxShadow = 'inset 0px -4px 0px 0px #0fa5eb';
+            link.style.color = '#0fa5eb';
         } else {
             section.classList.remove('your-active-class');
             link.classList.remove('your-active-class');
+            link.style.boxShadow = 'none';
+            link.style.color = '';
         }
     }
 }
-
-document.addEventListener("scroll", function () {
-    setAsActive();
-});
 
 
 
