@@ -81,6 +81,10 @@ function setAsActive() {
     }
 }
 
+document.addEventListener("scroll", function () {
+    setAsActive();
+});
+
 
 
 
