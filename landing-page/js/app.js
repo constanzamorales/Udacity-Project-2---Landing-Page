@@ -13,16 +13,16 @@
  * 
 */
 
+// Selecting all sections and all anchors
+const sectionElements = document.querySelectorAll('section');
+const linkElements = document.querySelectorAll('a');
+// Converting NodeLists to arrays
+const sectionsArr = Array.from(sectionElements);
+const linksArr = Array.from(linkElements);
 
-
-// Add class 'active' to section when near top of viewport
-
-
-// Scroll to anchor ID using scrollTO event
-
-
-// Building the menu
-// Select all h2 in the html file
+/*
+  Building the menu
+*/
 const titles = document.querySelectorAll('h2');
 const titlesArr = Array.from(titles);
 
@@ -37,20 +37,11 @@ for (const title of titlesArr) {
     navBar.appendChild(item);
 }
 
-// Selecting all sections and all anchors
-const sectionElements = document.querySelectorAll('section');
-const linkElements = document.querySelectorAll('a');
-// Converting NodeLists to arrays
-const sectionsArr = Array.from(sectionElements);
-const linksArr = Array.from(linkElements);
-
 // Giving each link its href and class
 for (i = 0; i < sectionsArr.length; i++){
     linksArr[i].setAttribute('href', `#${sectionsArr[i].id}`);
     linksArr[i].setAttribute('class', `${sectionsArr[i].id}`);
 }
-
-
 
 // Scroll to section on link click
 for (const link of linkElements) {
@@ -85,16 +76,12 @@ document.addEventListener('scroll', function () {
     setAsActive();
 });
 
-
-
-
-// We select the element we want to target
+// Element to target
 const target = document.querySelector('footer');
-
 const scrollToTopBtn = document.querySelector('.scrollToTopBtn');
-var rootElement = document.documentElement
-// Next we want to create a function that will be called when that element is intersected
-let callback = (entries, observer) => {
+const rootElement = document.documentElement
+// Function to be called when the element (the footer in this case) is intersected.
+const callback = (entries, observer) => {
     // The callback will return an array of entries, even if you are only observing a single item
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -115,10 +102,9 @@ const scrollToTop = () => {
 }
 scrollToTopBtn.addEventListener('click', scrollToTop);
 
-// Next we instantiate the observer with the function we created above. This takes an optional configuration
-// object that we will use in the other examples.
+// Use IntersectionObserver to implement scroll to top button.
 let observer = new IntersectionObserver(callback);
-// Finally start observing the target element
+// Run the function with the footer as target.
 observer.observe(target);
 
 
