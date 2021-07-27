@@ -58,6 +58,49 @@ section {
 	min-height: 80vh;
 }
 
+img {
+	max-width: 90%;
+	padding-bottom: 10px;
+}
+
+figure {
+	margin: 0;
+}
+
+figcaption {
+	font-size: 0.8em;
+	color: rgba(255, 255, 255, 0.74);
+}
+
+.scrollToTopBtn {
+	background-color: white;
+	border: none;
+	border-radius: 50%;
+	color: black;
+	cursor: pointer;
+	font-size: 24px;
+	line-height: 60px;
+	width: 60px;
+
+	/* place it at the bottom right corner */
+	position: fixed;
+	bottom: 150px;
+	right: 30px;
+	/* keep it at the top of everything else */
+	z-index: 100;
+	/* hide with opacity */
+	opacity: 0;
+	/* also add a translate effect */
+	transform: translateY(100px);
+	/* and a transition */
+	transition: all .5s ease;
+}
+
+.showBtn {
+	opacity: 1;
+	transform: translateY(0);
+}
+
 /* ---- Module Rules ---- */
 
 /* Navigation Styles*/
