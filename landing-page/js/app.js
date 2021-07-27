@@ -76,6 +76,11 @@ document.addEventListener('scroll', function () {
     setAsActive();
 });
 
+
+/* 
+Code by Marcel Rojas https://codepen.io/marcelrojas/pen/WNwgBRg for CSS Tricks https://css-tricks.com/how-to-make-an-unobtrusive-scroll-to-top-button/
+*/
+
 // Element to target
 const target = document.querySelector('footer');
 const scrollToTopBtn = document.querySelector('.scrollToTopBtn');
