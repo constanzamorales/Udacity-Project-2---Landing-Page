@@ -13,13 +13,6 @@
  * 
 */
 
-// Selecting all sections and all anchors
-const sectionElements = document.querySelectorAll('section');
-const linkElements = document.querySelectorAll('a');
-// Converting NodeLists to arrays
-const sectionsArr = Array.from(sectionElements);
-const linksArr = Array.from(linkElements);
-
 /*
   Building the menu
 */
@@ -36,6 +29,13 @@ for (const title of titlesArr) {
     item.appendChild(link);
     navBar.appendChild(item);
 }
+
+// Selecting all sections and all anchors
+const sectionElements = document.querySelectorAll('section');
+const linkElements = document.querySelectorAll('a');
+// Converting NodeLists to arrays
+const sectionsArr = Array.from(sectionElements);
+const linksArr = Array.from(linkElements);
 
 // Giving each link its href and class
 for (i = 0; i < sectionsArr.length; i++){
