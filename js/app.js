@@ -13,14 +13,17 @@
  * 
 */
 
-/*
-  Building the menu
-*/
+// Saving all h2 to a variable.
 const titles = document.querySelectorAll('h2');
-const titlesArr = Array.from(titles);
+// If I put the sectionElements and linkElements variables here, I get an error :(
+/* 
+const sectionElements = document.querySelectorAll('section');
+const linkElements = document.querySelectorAll('a');
+*/
 
-// Loop through each h2 and add elements to the nav menu
-for (const title of titlesArr) {
+
+// Looping through each h2 element and adding them to the navbar menu.
+for (const title of titles) {
     const navBar = document.querySelector('#navbar__list');
     const link = document.createElement('a');
     const item = document.createElement('li');
@@ -30,44 +33,47 @@ for (const title of titlesArr) {
     navBar.appendChild(item);
 }
 
-// Selecting all sections and all anchors
+// Saving all sections and anchor elements to variables.
 const sectionElements = document.querySelectorAll('section');
 const linkElements = document.querySelectorAll('a');
-// Converting NodeLists to arrays
-const sectionsArr = Array.from(sectionElements);
-const linksArr = Array.from(linkElements);
 
-// Giving each link its href and class
-for (i = 0; i < sectionsArr.length; i++){
-    linksArr[i].setAttribute('href', `#${sectionsArr[i].id}`);
-    linksArr[i].setAttribute('class', `${sectionsArr[i].id}`);
-}
+sectionElements.forEach((section, index) => {
+    const link = linkElements[index];
+    link.setAttribute('href', `#${section.id}`);
+    link.setAttribute('class', `${section.id}`);
+});
 
-// Scroll to section on link click
+
+// Function to scroll to section on link click, applied to all link through a for loop.
 for (const link of linkElements) {
-    const linkId = link.getAttribute('href');
     link.addEventListener('click', function (event) {
-        const sct = document.querySelector(`${linkId}`);
+        const sct = document.querySelector(link.getAttribute('href'));
         event.preventDefault();
         sct.scrollIntoView({ behavior: 'smooth' });
     });
 }
 
-// Add class 'active' to section and link when it is near top of viewport
+
+/* 
+Function to add class 'active' to section and link when it is near top of viewport.
+It also adds style to the active section so the user can see where he/she is at.
+*/
 const setAsActive = () => {
+    const active = function(link, section) {
+        section.classList.add('your-active-class');
+        link.classList.add('your-active-class');
+    }
+    const inactive = function(link, section) {
+        section.classList.remove('your-active-class');
+        link.classList.remove('your-active-class');
+    }
     for (const section of sectionElements) {
         const box = section.getBoundingClientRect();
         const link = document.querySelector(`.${section.id}`);
         if (box.top <= 150 && box.bottom >= 150) {
-            section.classList.toggle('your-active-class');
-            link.classList.toggle('your-active-class');
-            link.style.boxShadow = 'inset 0px -4px 0px 0px #0fa5eb';
-            link.style.color = '#0fa5eb';
+            active(link, section);
         } else {
-            section.classList.remove('your-active-class');
-            link.classList.remove('your-active-class');
-            link.style.boxShadow = 'none';
-            link.style.color = '';
+            inactive(link, section);
         }
     }
 }
@@ -90,11 +96,9 @@ const callback = (entries, observer) => {
     // The callback will return an array of entries, even if you are only observing a single item
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            // Show button
-            scrollToTopBtn.classList.add('showBtn');
+            scrollToTopBtn.classList.add('showBtn'); // Show button
         } else {
-            // Hide button
-            scrollToTopBtn.classList.remove('showBtn');
+            scrollToTopBtn.classList.remove('showBtn'); // Hide button
         }
     });
 }

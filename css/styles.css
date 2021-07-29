@@ -137,6 +137,11 @@ a:visited {
 	transition: ease 0.3s all;
 }
 
+a.your-active-class {
+	box-shadow: inset 0px -4px 0px 0px #0fa5eb;
+	color: #0fa5eb;
+}
+
 /* Header Styles */
 .page__header {
 	background: #fff;
