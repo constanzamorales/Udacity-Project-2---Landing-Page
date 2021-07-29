@@ -1,13 +1,20 @@
-# Landing Page Project
+# Landing Page - 2nd Project in Udacity Front end program
 
-## Table of Contents
+#### This project requires you to build a multi-section landing page, with a dynamically updating navigational menu based on the amount of content that is added to the page.
+From Udacity's project summary:
 
-* [Instructions](#instructions)
+*This project aims to give you real-world scenarios of manipulating the DOM. The functionality you will be using serves two purposes: to prepare you for appending dynamically added data to the DOM, and to show you how javascript can improve the usability of an otherwise static site.*
 
-## Instructions
+For this project to be accepted it needs to:
+* Create a dynamically built navbar menu. Meaning every section added will be automatically indexed to the navbar menu.
+* Add the functionality to scroll to each section once we click every menu item.
+* Reflect visually the active section in the navbar menu.
+* Scroll to top when we click the button at the bottom of the page.
 
-The starter project has some HTML and CSS styling to display a static version of the Landing Page project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+#### Technologies used:
+* HTML5
+* CSS
+* JavaScript (ES6)
 
-To get started, open `js/app.js` and start building out the app's functionality
+Basic code consisting of a static page was provided by Udacity so we could focus on the DOM manipulation part of the project.
 
-For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
